@@ -7,22 +7,18 @@ from typing import MutableMapping
 
 
 enemy = ""
-eHealth = 0
 aDamage = 0
-ability = ""
-ultimate= ""
+uDamage = 0
 health = 0
 mana = 0
-weapon = ""
 damage = 0
 char = ""
 ryggsäck=[]
     
 def start(): #backstory
     global health
-    global weapon
-    global ability
-    global ultimate
+    global aDamage
+    global uDamage
     global mana
     global damage
     print("Du slogs mot en stor drake men började förlora..")
@@ -52,14 +48,14 @@ def start(): #backstory
         ************************          
         """
         print(statistics)
-        sleep(3)
-        ability = "AXETHROW"
-        ultimate = "AXEFURY"
+        sleep(2)
+        aDamage = 50
+        uDamage = 100
         health = 200
         mana = 100
         damageC = 20
-        damage = damage + damageC
-        return mana, health, ability, ultimate, damage
+        damage == damage + damageC
+        return mana, health, aDamage, damage, uDamage
 
     if character == "krigare":
         print("du har valt klassen krigare.")
@@ -77,14 +73,14 @@ def start(): #backstory
         ************************          
         """
         print(statistics)
-        sleep(1)
-        ability = "SWORDSPIN"
-        ultimate = "FATE SEALED"
+        sleep(2)
+        aDamage = 50
+        uDamage = 100
         health = 150
         mana = 100
         damageC = 40
         damage = damage + damageC
-        return mana, health, damage, ability, ultimate
+        return mana, health, damage, aDamage, uDamage
 
     if character == "magiker":
         print("du har valt klassen magiker.")
@@ -102,14 +98,14 @@ def start(): #backstory
         ************************          
         """
         print(statistics)
-        sleep(1)
-        ability = "FIREBALL"
-        ultimate = "PRIMORDIAL BURST"
+        sleep(2)
+        aDamage = 80
+        uDamage = 1000
         health = 100
         mana = 200
         damageC = 30
         damage = damage + damageC
-        return mana, health, damage, ability, ultimate
+        return mana, health, damage, aDamage, uDamage
 
     if character == "jägare":
         print("du har valt klassen jägare.")
@@ -127,65 +123,207 @@ def start(): #backstory
         ************************          
         """
         print(statistics)
-        sleep(1)
-        ability = "QUICKSHOT"
-        ultimate = "CROSSBOW"
+        sleep(2)
+        aDamage = 60
+        uDamage = 120
         health = 100
         mana = 200
         damageC = 45
         damage = damage + damageC
-        return mana, health, damage, ability, ultimate
+        return mana, health, damage, aDamage, uDamage
     
     else:
         print("Du måste välja en utav klasserna!")
 
-
-
-# själva starten av spelet:
-def grottöppning(): 
-    print("du står nu i grottöppningen, det är kvavt och du ser inte så mycket..")
+def guldrum(): #själva guldrummet
+    print("du är nu i guldrummet..")
     sleep(1)
-    print("du går lite längre in och ser ljus, när du kollar närmare ser du 3 dörrar..")
+    print("rummet är upplyst och du ser en guldkista mitt i rummet..")
     sleep(1)
-    print("en dörr rakt framför dig, en träddörr, till vänster har ser du en gulddörr och till höger om dig har du en dörr med en dödskalle hängandes över..")
+    print("du känner dig säker när du går in..")
     sleep(1)
-    print("du blir väldigt försiktig med tanke på att det kan bo fler monster här eller något annat mystiskt, men du behöver ta dig ut..")
+    print("rummet är mycket dammigt och det ser ut som om rummet har varit övergivet väldigt länge..")
     sleep(1)
-    print("hur gör du? vilken dörr väljer du?")
-    sleep(1)
-    print("vänster höger eller rakt fram.")
-    sleep(1)
-    print("(För att gå vänster skriv \"gå vänster\")")
-    
-    förstadörr=input(">")
-    förstadörr=förstadörr.lower()
-    
-    if förstadörr == "gå vänster":
-        print("du står nu och kikar in i gulddörren, du ser ett tomt rum och en till gulddörr framför dig..")
+    print("vill du gå fram till guldkistan?('ja' eller 'nej')")
+    guldkista=input(">")
+    guldkista=guldkista.lower()
+    print(guldkista)
+    if guldkista == "ja":
+        print("du står nu framför guldkistan.") 
         sleep(1)
-        print("du går in och kikar in i nästa rum..")
+        print("vill du öppna guldkistan?")
+        öppnakista=input(">")
+        öppnakista=öppnakista.lower()
+        print(öppnakista)
+        if öppnakista == "ja":
+            print("i kistan så ligger det några guldmynt och en bok med konstiga symboler på")
+            sleep(1)
+            print("vill du ta upp boken och guldmynten?")
+            kistaitems=input(">")
+            kistaitems=kistaitems.lower()
+            print(kistaitems)
+            if kistaitems == "ja":
+                global ryggsäck
+                global damage
+                print("du tar upp den konstiga boken och 200 guldmynt..")
+                sleep(1)
+                print("Du bläddrar igenom boken fort..")
+                sleep(1)
+                print("Plötsligt börjar symbolerna på boken att glänsa och du känner dig starkare...")
+                sleep(1)
+                print("*Boken du hittat är en rune-bok som gör dig starkare!*")
+                sleep(1)
+                print("*Genom att ta upp rune-böcker under speletsgång kommer du att göra mer skada med dina vanliga attack*")
+                ryggsäck.append("200 guldmynt")
+                gåut=input(">")
+                gåut=gåut.lower()
+                print(gåut)
+                print("vill du gå ut ur rummet?")
+                if gåut == "ja":
+                    guldkorridor()
+                if gåut == "nej":
+                    print("du står kvar och stirrar på en stängd guldkista..")
+                    sleep(1)
+                    print("Plötsligt ser du kistan röra på sig...")
+                    sleep(1)
+                    print("Det är en levande kista!")
+                    sleep(1)
+                    print("Du genast springer ut ur guldrummet och hör att kistan springer efter dig!")
+                    sleep(1)
+                    print("Du flyr tillbaks där du började och kan inte längre gå in i guldkorridoren..")
+                    sleep(1)
+                    print("Nu kan du antingen gå genom trädörren('gå framåt') eller genom dörren med dödsskallen ovan('gå vänster')")
+                    dörr = input(">")
+                    dörr=dörr.lower()
+                    print(dörr)
+                    if dörr == "gå framåt":
+                        lootrum()
+                    elif dörr == "gå vänster":
+                        bosskoridor()
+                    else:
+                        print("Det finns inga andra vägar..")
+                        print(dörr)
+                damage=damage + 10
+                return damage
+            elif kistaitems == "nej":
+                print("du låter föremålen ligga kvar.")
+                sleep(1)
+                print("Det verkar inte finnas något annat intressant i rummet, du borde gå ut och testa en annan dörr")
+                ut=input(">")
+                ut=ut.lower()
+                print(ut)
+                if ut == "gå ut":
+                    förstarummet()
+                else:
+                    print("Du kan gå ut genom att skriva in 'gå ut'")
+                    print(ut)
+        if öppnakista == "nej":
+            print("du känner att guldkistan kan vara farlig men du känner dig fortfarande säker i rummet..")
+            sleep(1)
+            print("Det verkar inte finnas något mer intressant i rummet, du borde gå ut och testa en annan dörr")
+            goOut=input(">")
+            goOut=goOut.lower()
+            print(goOut)
+            if goOut == "gå ut":
+                förstarummet()
+            else:
+                print("Du kan gå ut genom att skriva in 'gå ut'")
+                print(ut)
+    if guldkista == "nej":
+        print("du känner att guldkistan kan vara farlig men du känner dig fortfarande säker i rummet..")
+        print("vill du gå ut ur rummet?")
+        gåut=input(">")
+        gåut=gåut.lower()
+        print(gåut)
+        if gåut == "ja":
+            guldkorridor()
+        if gåut == "nej":
+            print("du står kvar och stirrar på en stängd guldkista..")
+            sleep(1)
+            print("Plötsligt ser du kistan röra på sig...")
+            sleep(1)
+            print("Det är en levande kista!")
+            sleep(1)
+            print("Du genast springer ut ur guldrummet och hör att kistan springer efter dig!")
+            sleep(1)
+            print("Du flyr tillbaks där du började och kan inte längre gå in i guldkorridoren..")
+            sleep(1)
+            print("Nu kan du antingen gå genom trädörren('gå framåt') eller genom dörren med dödsskallen ovan('gå vänster')")
+            dörr = input(">")
+            dörr=dörr.lower()
+            print(dörr)
+            if dörr == "gå framåt":
+                lootrum()
+            elif dörr == "gå vänster":
+                bosskoridor()
+            else:
+                print("Det finns inga andra vägar..")
+                print(dörr)
+
+def bossrum():   #bossrummet
+    target = "SKELETON KING"
+    print("du har nu öppnat den stora tunga porten..")
+    sleep(1)
+    print("du ser dig omkring, det är en stor sal med bord och stolar lite överallt, dammigt och en stor tron längst in i rummet..")
+    sleep(1)
+    print("Du ser inte om någon sitter på tronen eftersom att det är så mörkt längre in. det lyser knappt där du står redan..")
+    sleep(1)
+    print("du ser återigen skelett delar som ligger på stolar och bord. Du märker även att inget av möblerna är trasiga..")
+    sleep(1)
+    print("kan det vara en magiker som gjort detta?")
+
+def guldkorridor(): #rum innan guldrumS
+    global ryggsäck
+    print("du står nu i vad som ser ut och vara en guldig korridor..")
+    sleep(1)
+    print("när du ser dig omkring så ser du massa bokhyllor fullt med böcker och rummet är även dammigt..")
+    sleep(1)
+    print("rummet är även någorlunda upplyst..")
+    sleep(1)
+    print("längre in i rummet ser du en till guldig dörr..")
+    sleep(1)
+    print("bakom dig har du dörren du kom ifrån..")
+    sleep(1)
+    print("vill du gå igenom dörren framför dig?")
+
+    gåiniguldrum=input(">")
+    gåiniguldrum=gåiniguldrum.lower()
+
+    if gåiniguldrum =="ja":
+        guldrum()
+    if gåiniguldrum == "nej":
+        print("du står kvar i guldkorridoren, säker på att du inte vil göra något?")
         sleep(1)
-        guldkorridor()
-    
-    if förstadörr == "gå höger":
-        bosskoridor()
+        print("vill du gå tillbaka till grottöppningen?")
+        gåtillgrottöppning=input(">")
+        gåtillgrottöppning=gåtillgrottöppning.lower()
+        if gåtillgrottöppning == "ja":
+            grottöppning()
+        if gåtillgrottöppning == "nej":
+            print("du står nu kvar i guldkorridoren..")
+    if gåiniguldrum == "search":
+        print("Du letar igenom den guldiga korridoren...\n")
+        sleep(1)
+        print("Du hittar en mana elixir!\n")
+        ryggsäck.append("Manaelixir")
+        sleep(1)
+        print("**Mana elixir kan du använda som livselixir, under fightens gång**\n")
+        sleep(1)
+        print("**Till skillnad från livselixiren, du använder manaelixir genom 'mana' och den återger dig 50 mana")
+        sleep(1)
+        print("Det verkar inte finnas något mer att göra i korridoren..")
+        sleep(1)
+        print("Vad vill du göra? 'gå framåt'(genom guldiga dörren) och 'gå bakåt'(tillbaks till gråttöppningen)")
+        sleep(1)
+        print(gåiniguldrum)
+        if gåiniguldrum == "gå framåt":
+            guldrum()
+        elif gåiniguldrum == "gå bakåt":
+            förstarummet()
+        else:
+            print("Du måste ju välja en av alternativen\n \n'gå framåt' \neller\n'gå bakåt'")
 
-    
-    if förstadörr == "gå framåt":
-        lootrum()
 
-#trädörren
-def lootrum(): 
-    print("Du går in genom den öppna trä dörren")
-    sleep(1)
-    print("Plötsligt stängs dörren bakom dig och du ser tre levande skeletter springa mot dig")
-    sleep(1)
-    print("Du måste döda dem!")
-    sleep(1)
-    global ability
-    fight("skelett", ability)
-    
-#rummet innan bossrum med kartan
 def bosskoridor(): 
     print("du har nu gått igenom dörren med en dödskalle över sig..")
     sleep(1)
@@ -218,268 +356,175 @@ def bosskoridor():
             grottöppning()
     if gåtillgrottöppning == "nej":
         bosskoridor()
-
-def bossrum():   #bossrummet
-    target = "SKELETON KING"
-    print("du har nu öppnat den stora tunga porten..")
-    sleep(1)
-    print("du ser dig omkring, det är en stor sal med bord och stolar lite överallt, dammigt och en stor tron längst in i rummet..")
-    sleep(1)
-    print("Du ser inte om någon sitter på tronen eftersom att det är så mörkt längre in. det lyser knappt där du står redan..")
-    sleep(1)
-    print("du ser återigen skelett delar som ligger på stolar och bord. Du märker även att inget av möblerna är trasiga..")
-    sleep(1)
-    print("kan det vara en magiker som gjort detta?")
-
-def guldrum(): #själva guldrummet
-    print("du är nu i guldrummet..")
-    sleep(1)
-    print("rummet är upplyst och du ser en guldkista mitt i rummet..")
-    sleep(1)
-    print("du känner dig säker när du går in..")
-    sleep(1)
-    print("rummet är mycket dammigt och det ser ut som om rummet har varit övergivet väldigt länge..")
-    sleep(1)
-    print("vill du gå fram till guldkistan?")
-        
-def guldkorridor(): #rum innan guldrumS
-    print("du står nu i vad som ser ut och vara en guldig korridor..")
-    sleep(1)
-    print("när du ser dig omkring så ser du massa bokhyllor fullt med böcker och rummet är även dammigt..")
-    sleep(1)
-    print("rummet är även någorlunda upplyst..")
-    sleep(1)
-    print("längre in i rummet ser du en till guldig dörr..")
-    sleep(1)
-    print("bakom dig har du dörren du kom ifrån..")
-    sleep(1)
-    print("vill du gå igenom dörren framför dig?")
-
-    gåiniguldrum=input(">")
-    gåiniguldrum=gåiniguldrum.lower()
-
-    if gåiniguldrum =="ja":
-        guldrum()
-    if gåiniguldrum == "nej":
-        print("du står kvar i guldkorridoren, säker på att du inte vil göra något?")
-        sleep(1)
-        print("vill du gå tillbaka till grottöppningen?")
-        gåtillgrottöppning=input(">")
-        gåtillgrottöppning=gåtillgrottöppning.lower()
-        if gåtillgrottöppning == "ja":
-            grottöppning()
-        if gåtillgrottöppning == "nej":
-            print("du står nu kvar i guldkorridoren..")
-
-    guldkista=input(">")
-    guldkista=guldkista.lower()
-
-    if guldkista == "ja":
-        print("du står nu framför guldkistan.") 
-        sleep(1)
-        print("vill du öppna guldkistan?")
-        öppnakista=input(">")
-        öppnakista=öppnakista.lower()
-
-        if guldkista == "nej":
-            print("du känner att guldkistan kan vara farlig men du känner dig fortfarande säker i rummet..")
-
-        if öppnakista == "ja":
-            print("i kistan så ligger det några guldmynt och ett vapen.")
-            sleep(1)
-            print("vill du ta upp vapnet och guldmynten?")
-            kistaitems=input(">")
-            kistaitems=kistaitems.lower()
-            if kistaitems == "ja":
-                print("du tar upp svärdet och mynten..")
-                ryggsäck.append("svärd")
-                ryggsäck.append("guldmynt")
-                
-            if kistaitems == "nej":
-                print("du låter föremålen ligga kvar.")
-
-        if öppnakista == "nej":
-            print("du känner att guldkistan k4an vara farlig men du känner dig fortfarande säker i rummet..")
     
-    print("vill du gå ut ur rummet?")
 
-    gåut=input(">")
-    gåut=gåut.lower()
-
-    if gåut == "ja":
+# själva starten av spelet:
+def grottöppning(): 
+    print("du står nu i grottöppningen, det är kvavt och du ser inte så mycket..")
+    sleep(1)
+    print("du går lite längre in och ser ljus, när du kollar närmare ser du 3 dörrar..")
+    sleep(1)
+    print("en dörr rakt framför dig, en träddörr(*fight-tutorial*), till vänster har ser du en gulddörr och till höger om dig har du en dörr med en dödskalle hängandes över..")
+    sleep(1)
+    print("du blir väldigt försiktig med tanke på att det kan bo fler monster här eller något annat mystiskt, men du behöver ta dig ut..")
+    sleep(1)
+    print("hur gör du? vilken dörr väljer du?")
+    sleep(1)
+    print("vänster höger eller rakt fram.")
+    sleep(1)
+    print("(För att gå vänster skriv \"gå vänster\")")
+    
+    förstadörr=input(">")
+    förstadörr=förstadörr.lower()
+    
+    if förstadörr == "gå vänster":
+        print("du står nu och kikar in i gulddörren, du ser ett tomt rum och en till gulddörr framför dig..")
+        sleep(1)
+        print("du går in och kikar in i nästa rum..")
+        sleep(1)
         guldkorridor()
-    if gåut == "nej":
-        print("du står kvar och stirrar på en stängd guldkista..")
-        sleep(1)
-        print("säker på att du inte vill gå ut ur rummet?")
-
-def fight(enemy, ability):
-
-    def tutorial():
-        print("""
-                                                *****Fight tutorial*****
-        
-                                Kom ihåg att använda dina abilities under spelets gång!
-            För att använda de behöver du kontrollera din mana, du kan göra det genom att skriva mana i terminalen
-             Fienden kommer alltid att attackera efter dig, alltså är det möjligt att gå ut ur fighten utan skada
-                  Du måste även kontrollera ditt hp, det kommer att skrivas ut efter varje fiendes attack 
-             Du kan inte använda några föremål under fightens gång, alltså kan du inte använda exempelvis livselixir 
-             Du måste tänka strategiskt, dina abilities är värdefulla och väldigt dyra, du måste tänka efter dina steg
-                    Du kan använda dina abilities genom att under fightens gång skriva a och ultimate genom u
-             """)
-        
     
-    def enemies(enemy):
-        global eHealth
-        if enemy == "skelett":
-            eHealth = 200
-            return eHealth
-            
+    if förstadörr == "gå höger":
+        bosskoridor()
+
     
-    def eAttack(enemy, health):
-        if enemy == "skelett":
-            enemytxt = random.choice(["Skeletten drar upp sitt svärd!", "Den skrattar i ditt ansikte!", "Skeletten attackerar lågt!"])
-            print(enemytxt)
-            health = health - (random.randint(1,4)) 
-            return health   # mozna zmienic na return health - random.randint(1,4)
-    
-    def attPower(ability, ultimate):
-        global aDamage
+    if förstadörr == "gå framåt":
+        lootrum()
 
-        if ability == "AXETHROW":
-            aDamage = 50
-        elif ultimate == "AXEFURY":
-            aDamage = 100
-        elif ability == "SWORDSPIN":
-            aDamage = 80
-        elif ultimate == "FATE SEALED":
-            aDamage = 150
-        elif ability == "FIREBALL":
-            aDamage = 70
-        elif ultimate == "PRIMORDIAL BURST":
-            aDamage = 1000
-        elif ability == "QUICKSHOT":
-            aDamage = 60
-        elif ultimate == "CROSSBOW":
-            aDamage = 80
-        else:
-            print("error")
+def förstarummet():
+    print("Du befinner dig nu i första rummet, 'gråttöppningen'")
+    sleep(1)
+    print("Du kan antingen gå åt höger, genom dörren med dödsskallen ovan \n \n eller till vänster genom gulddörren")
+    choice = input(">")
+    choice = choice.lower()
+    print(choice)
+    if choice == "gå vänster":
+        guldkorridor()
+    elif choice == "gå höger":
+        bosskoridor()
 
-        return aDamage
-
-    def attack(enemy):
-        global damage
-        global eHealth
-        global ability
-        global ultimate
-
-        print("Du attackerade skeletten med din autoattack \n \n den har {}hp kvar".format(eHealth - damage))
-        if eHealth > 0:
-            if enemy == "skelett":
-                eAttTxt = random.choice(["Dess ben delar flyger omkring i rummet!", "Skeletten skriker vilt!", "Skeletten kunde inte försvara sig!"])
-                print(eAttTxt)
-        return eHealth - damage 
-    
-    def abilities(ability, ultimate, health, eHealth):
-        def axeThrow(eHealth):
-            attPower(ability)
-            eHealth -= aDamage
-            print("Du kastar din yxa på fienden, han har {}hp kvar!".format(eHealth))
-            return eHealth
-        def axeFury(eHealth):
-            attPower(ultimate)
-            eHealth -= aDamage
-            print("Du använder din speciella attack AXEFURY \n \n fienden har {}hp kvar!".format(eHealth))
-            return eHealth
-        def swordSpin(eHealth):
-            attPower(ability)
-            eHealth -= aDamage
-            print("Du snurrar runt med din svärd i handen \n \n fienden har {}hp kvar!".format(eHealth))
-            return eHealth
-        def fateSealed(eHealth):
-            attPower(ultimate)
-            eHealth -= aDamage
-            print("Du skär genom fienden med ditt svärd \n \n han har {}hp kvar!".format(eHealth))
-            return eHealth
-        def fireBall(eHealth):
-            attPower(ability)
-            eHealth -= aDamage
-            print("Du kastar en eldkula på fienden! \n \n han har {}hp kvar!".format(eHealth))
-            return eHealth
-        def primordialBurst(eHealth):
-            attPower(ultimate)
-            eHealth -= aDamage
-            print("Du kastar en svarthål på fienden \n \n han har dött!")
-            return eHealth
-        def quickShot(eHealth):
-            attPower(ability)
-            eHealth -= aDamage
-            print("Du skjuter tre pilar riktigt fort! \n \n din fiende har {}hp kvar!".format(eHealth))
-            return eHealth
-        def crossBow(eHealth):
-            attPower(ultimate)
-            eHealth -= aDamage
-            print("Du tar fram din armborst och skjuter nu mycket kraftigare och fortare! \n \n din fiende har {}hp kvar!".format(eHealth))
-            return eHealth
-
-    def maxhealth(health):
-        if health > 20:
-            health = 20
-            return health 
-    def maxmana(mana):
-        if mana > 200:
-            mana = 200
-            return mana
-    def backpack(health, mana):
-        def bröd():
-            print("Bröd ger dig 20hp")
-            health + 20
-        def livelixir():
-            print("Livselixir ger dig 100 hp")
-            health + 100
-        def manaelixir():
-            print("Manaelixir ger dig 100 mana")
-            mana + 100
-
-    def fightskelett(enemy, ability, ultimate, mana):
+#trädörren
+def lootrum(): 
+    global ryggsäck
+    print("Du går in genom den öppna trä dörren")
+    sleep(1)
+    print("Plötsligt stängs dörren bakom dig och du ser en levande skelett springa mot dig \n")
+    sleep(1)
+    def fightS():
         global health
-        enemies("skelett")
-        action = input("Du står framför skeletten, vad vill du göra?")
-        action=action.lower()
-        if action == "attack" or "attackera":
-            attack("skelett")
-        if ability == "AXETHROW":
-            attack("skelett")
-        if ability == "SWORDSPIN":
-            attack("skelett")
-        if ability == "FIREBALL":
-            attack("skelett")
-        if ability == "QUICKSHOT":
-            attack("skelett")
-        if action == "a":
-            if mana >= 50:
-                attPower(ability)
-        if action == "u":
-            if mana >= 100:
-                attPower(ultimate)
-        while enemy == True:
-            print(action)
-        if enemy == False:
-            print("Du har dödat skeletten!")
-            pass
-        if ability == "AXETHROW":
-                fightskelett("skelett", "AXETHROW", "AXEFURY", 100)
-        if ability == "SWORDSPIN":
-                fightskelett("skelett", "SWORDSPIN", "FATE SEALED", 100)
-        if  ability == "FIREBALL":
-                fightskelett("skelett", "FIREBALL", "PRIMORDIAL BURST", 200)
-        if  ability == "QUICKSHOT":
-                fightskelett("skelett", "QUICKSHOT", "CROSSBOW", 200)
-    print(weapon)
-    tutorial()
+        global damage
+        global uDamage
+        global aDamage
+        global mana
+        eHealth = 200
+        tutorial()
+        sleep(2)
+        while eHealth > 0:
+            if health <= 0:
+                print("Du har dött, men ge inte upp!")
+                sleep(1)
+                print("STARTA OM FIGHTEN")
+                fightS()
+            if health > 0:
+                action = input(f"Du står framför skeletten, döda den!\n \n")
+                action=action.lower()
+                if action == "attack":
+                    eHealth=eHealth - damage
+                    if eHealth <= 0:
+                        print("skeletten överlevde inte din autoattack!")
+                    else:
+                        eAttTxt = random.choice(["Dess ben delar flyger omkring i rummet!\n \n", "Skeletten skriker vilt!\n \n", "Skeletten kunde inte försvara sig!\n \n"])
+                        print(eAttTxt)
+                        print(f"Du attackerade skeletten, den har {eHealth}hp kvar!\n \n")
+                        print(f"Skeletten slår tillbaks! Du har {health}hp kvar!")
+                        health=health - random.randint(3,6)
+                if action == "a" and mana >= 50:
+                    if mana < 50:
+                        print("Du har inte tillräckligt med mana")
+                    eHealth = eHealth - aDamage
+                    if eHealth <= 0:
+                        print("skeletten överlevde inte din kraftfulla ability!")
+                        return mana
+                    else:
+                        mana = mana - 50
+                        eAbTxt = random.choice(["\n \nSkeletten flyger bort mot väggen efter att den har tagit emot din kraftfulla ability!", "Skeletten skriker av ondska då du träffar den med din ability!"])
+                        print(eAbTxt)
+                        print(f"Du attackerade skeletten med din kraftfulla ability! \n \n den har {eHealth}hp kvar!\n")
+                        print(f"Skeletten tar sig upp och attackerar tillbaka! Du har {health}hp kvar!")
+                        health=health - random.randint(3,6)
+                        return mana
+                elif action == "u" and mana >= 100:
+                    if mana < 100:
+                        print("Du ha inte tillräckligt mana!")
+                    eHealth = eHealth - uDamage
+                    health=health - random.randint(1,4)
+                    mana = mana - 100
+                    eAbTxt = random.choice(["\n \nSkeletten flyger bort mot väggen efter att den har tagit emot din kraftfulla ability!", "Skeletten skriker av ondska då du träffar den med din ability!"])
+                    print(eAbTxt)
+                    if eHealth > 0:
+                        print(f"\nSkeletten blir träffad med din ultimate ability! Den tar enorm skada, den har {eHealth}hp kvar!")
+                        print("\n \n Skeletten kunde inte ta sig upp i tid för att attackera dig tillbaka, du förlorar ingen hp!")
+                        return mana
+                    else:
+                        print("Skeletten klarade inte av din kraftfulla ability! \n")
+                        return mana
+
+
+
+    fightS()
+    print("**Du har nu dödat din första fiende!** \n")
+    sleep(1)
+    print("**Du kommer genom spelets gång behöva döda många fler för att gå vidare...**")
+    sleep(1)
+    print(f"Du har {mana} kvar efter fighten")
+    sleep(1)
+    print("**Kom ihåg att använda dina abilities och kontrollera din health, lycka till!**\n")
+    sleep(1)
+    print("Efter att du har dödat skeletten, har dörrarna öppnats")
+    sleep(1)
+    print("Du ser dig omkring i rummet efter att ha lugnat ned sig..")
+    sleep(1)
+    print("Du ser inget märkligt förutom några gamla dammiga hyllor, kanske vore det smart att leta igenom dem?..")
+    sleep(1)
+    leta = input("Vad vill du göra \n \n du kan gå tillbaka till första rummen och testa ett annat dörr genom att skriva 'gå bakåt' \n \n eller leta igenom rummet genom att skriva 'search'")
+    leta = leta.lower()
+    print(leta)
+    if leta == "gå bakåt":
+        sleep(2)
+        förstarummet()
+    if leta == "search":
+        ryggsäck.append("Livselixir")
+        print("Du söker igenom alla dammiga hyllor och du hittar en livselixir! \n \n *Livs elixir kan du använda under fightens gång genom att skriva 'hp' då du märker att ditt hp är lågt* \n \n")
+        sleep(2)
+        print("Nu har du letat igenom rummet och det verkar inte finnas något mer du kan göra, gå tillbaka till grottöppningen och välj ett annat dörr!")
+        val=input(">")
+        val=val.lower()
+        if val == "gå bakåt" or "gå tillbaka":
+            förstarummet()
+        else:
+            print("Det finns inget kvar att göra i rummet")
+            print(val)
+    else:
+        print("Det verkar inte finnas något annat du kan göra i rummet, välj en av alternativen!")
+        print(leta)
+
+
+def tutorial():
+    print("                                *****Fight tutorial*****\n")
     sleep(2)
-    print("Du måste döda skeletten för att ta dig ur rummet!")
-    fightskelett(enemy, ability, ultimate, mana)
-    
+    print("                Kom ihåg att använda dina abilities under spelets gång! \n")
+    sleep(2)
+    print("För att använda de behöver du kontrollera din mana, du kan göra det genom att skriva mana i terminalen \n")
+    sleep(2)
+    print("Fienden kommer alltid att attackera efter dig, alltså är det möjligt att gå ut ur fighten utan skada \n")
+    sleep(2)
+    print("      Du måste även kontrollera ditt hp, det kommer att skrivas ut efter varje fiendes attack \n") 
+    sleep(2)
+    print("Du kan inte använda några föremål under fightens gång, alltså kan du inte använda exempelvis livselixir \n")
+    sleep(2)
+    print("Du måste tänka strategiskt, dina abilities är värdefulla och väldigt dyra, du måste tänka efter dina steg \n")
+    sleep(2)
+    print("     Du kan använda dina abilities genom att under fightens gång skriva a och ultimate genom 'u' \n")
+
 start()
 grottöppning()
